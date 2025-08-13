@@ -1,1 +1,347 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        .social-icon-hover {
+            filter: sepia(100%) saturate(1000000%) hue-rotate(0deg) brightness(0.9);
+        }
+        .featured-content {
+            padding: 50px 20px;
+            text-align: center;
+        }
 
+        .section-title {
+            margin-bottom: 30px;
+        }
+
+        .featured-stories {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .story-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .story-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .story-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .story-card:hover {
+            transform: scale(1.05);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .see-all {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .article-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .article-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .article-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .article-card:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-banner-slider {
+            width: 100vw;
+            height: 698px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slides-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            text-decoration: none;
+            display: block;
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .dot.active {
+            transform: scale(1.2);
+        }
+
+        .button-content {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .arrow-icon {
+            font-size: 18px;
+        }
+
+        .button-text {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-space header-relative">
+        <nav class="main-nav">
+            <a href="https://www.japan.travel/en/uk/media/" class="nav-link">Media</a>
+            <a href="https://www.japan.travel/en/uk/trade/" class="nav-link">Travel Trade</a>
+            <a href="https://www.japanmeetings.org/" class="nav-link">Meetings & Events</a>
+            <a href="https://www.japan.travel/en/uk/nl/" class="nav-link">Netherlands</a>
+        </nav>
+        <img class="logo-absolute" src="{% static 'images/sakura.png' %}" alt="Logo">
+        <nav class="main-nav-right">
+            <a href="#" class="nav-link-right">Destinations</a>
+            <a href="#" class="nav-link-right">Things to Do</a>
+            <a href="#" class="nav-link-right">Plan Your Trip</a>
+            <a href="#" class="nav-link-right">Inspiration</a>
+            <a href="#" class="nav-link-right">Contact us</a>
+            <select class="lang-select">
+                <option value="en">Select Language</option>
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="es">Español</option>
+            </select>
+            <div class="arrow-wrapper">
+                <img src="{% static 'images/arrow.png' %}" alt="Arrow" class="nav-arrow-icon">
+            </div>
+            <div class="search-box-rect">
+                <input type="text" class="search-box" placeholder="Search" name="q">
+                <a href="https://www.japan.travel/en/travel-directory/">
+                    <img src="{% static 'images/s.png' %}" class="social-icon">
+                </a>
+            </div>
+            <a href="https://x.com/visitjapanuk" class="x-wrapper">
+                <img src="{% static 'images/x.png' %}" alt="X" class="x-icon">
+            </a>
+            <a href="https://www.facebook.com/visitjapanuk/" class="f-wrapper">
+                <img src="{% static 'images/f.png' %}" alt="Facebook" class="f-icon">
+            </a>
+            <a href="https://www.instagram.com/visitjapan_uk/" class="i-wrapper">
+                <img src="{% static 'images/i.png' %}" alt="Instagram" class="i-icon">
+            </a>
+            <a href="https://www.youtube.com/user/visitjapan/featured" class="yt-wrapper">
+                <img src="{% static 'images/y.png' %}" alt="YouTube" class="yt-icon">
+            </a>
+            <a class="heart-wrapper">
+                <img src="{% static 'images/heart.png' %}" alt="Heart" class="heart-icon">
+            </a>
+        </nav>
+    </div>
+
+    <div class="transparent-bar">
+        <h1 class="guide-title">Travel Japan - The Official Japan Guide</h1>
+    </div>
+
+    <div class="hero-banner-slider">
+        <div class="slides-container">
+            <a href="https://www.japan.travel/en/uk/newsletter/" class="slide" style="background-image: url({% static 'images/bridge.jpg' %})">
+                <div class="slide-content">
+                    <h1>Join the JNTO newsletter!</h1>
+                    <p>Travel offers, Japan news and a chance to join our giveaways!</p>
+                </div>
+            </a>
+            <a href="https://www.japan.travel/en/uk/inspiration/sustainable-japan-eco-tourism-experiences-to-make-lasting-memories/" class="slide" style="background-image: url({% static 'images/slide2.jpg' %})">
+                <div class="slide-content">
+                    <h1>Sustainable Japan: Eco-Tourism Experiences to Make Lasting Memories</h1>
+                </div>
+            </a>
+            <a href="https://www.japan.travel/en/japan-magazine/sushi-definitive-seasonal-calendar/" class="slide" style="background-image: url({% static 'images/slide3.jpg' %})">
+                <div class="slide-content">
+                    <h1>Sushi: Definitive-Seasonal Calendar</h1>
+                </div>
+            </a>
+            <a href="https://www.japan.travel/en/uk/inspiration/kagoshima-crash-course-southern-island-beauty-and-charm/" class="slide" style="background-image: url({% static 'images/slide4.jpg' %})">
+                <div class="slide-content">
+                    <h1>Kagoshima Crash Course: Southern Island Beauty and Charm</h1>
+                </div>
+            </a>
+            <a href="https://www.japan.travel/en/tohoku-colors/" class="slide" style="background-image: url({% static 'images/slide5.jpg' %})">
+                <div class="slide-content">
+                    <h1>Tohoku Colours</h1>
+                    <p>Experience the seasonal and cultural beauty of northeastern Japan</p>
+                </div>
+            </a>
+            <a href="https://www.japan.travel/en/uk/inspiration/akita-prefecture-crash-course-history-and-nature-in-the-north/" class="slide" style="background-image: url({% static 'images/slide6.jpg' %})">
+                <div class="slide-content">
+                    <h1>Akita Prefecture Crash Course: History and Nature in the North</h1>
+                </div>
+            </a>
+        </div>
+        <div class="slider-button prev" aria-label="Previous slide">
+            <div class="button-content">
+                <span class="arrow-icon">&#10094;</span>
+            </div>
+        </div>
+        <div class="slider-button next" aria-label="Next slide">
+            <div class="button-content">
+                <span class="arrow-icon">&#10095;</span>
+            </div>
+        </div>
+        <div class="slider-dots"></div>
+    </div>
+
+    <section class="featured-content">
+        <div class="section-header">
+            <h2>Get to know Japan</h2>
+            <a href="#" class="see-all">SEE ALL</a>
+        </div>
+    </section>
+
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <head>
+        <meta charset="UTF-8">
+        <title>Blog List</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+
+    <div class="blog-row">
+        {% for blog in blogs %}
+            <div class="blog-entry">
+                <div class="text">
+                    <h3>{{ blog.title }}</h3>
+                    <p class="date">{{ blog.date }}</p>
+                </div>
+                <img src="{{ blog.image.url }}" alt="Blog Image">
+            </div>
+        {% endfor %}
+    </div>
+    <div class="map-container">
+        <div class="region-panel">
+            <div class="region-images">
+                <img src="" alt="Image 1">
+                <img src="" alt="Image 2">
+                <img src="" alt="Image 3">
+                <img src="" alt="Image 4">
+            </div>
+            <div class="region-info">
+                <h3 id="region-title">Hover over a region</h3>
+                <p id="region-description">The description will appear here.</p>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <!-- Include Simplemaps JS files -->
+    <script src="{% static 'js/map/mapdata.js' %}"></script>
+    <script src="{% static 'js/map/countrymap.js' %}"></script>
+    <script src="{% static 'js/simplemaps/mapdata.js' %}"></script>
+    <script src="{% static 'js/simplemaps/countrymap.js' %}"></script>
+    <script src="{% static 'js/map-custom.js' %}"></script>
+
+
+
+</body>
+</html>
