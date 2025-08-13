@@ -1,1 +1,45 @@
+.social-icons, .utility-links, .slider-links, .nav-buttons {
+    margin: 20px 0;
+}
 
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    text-decoration: none;
+    background-color: #f0f0f0;
+    color: #333;
+    border-radius: 4px;
+}
+
+.button:hover {
+    background-color: #e0e0e0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+.map-container {
+    background-image: url('/static/images/Japan.jpg');
+    background-size: cover;      /* Use 'cover' for full background coverage */
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 600px;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 40px 0;
+}
+
+/* Optionally, ensure #map has a size */
+#map {
+    width: 700px;   /* or 100%, or whatever fits your design */
+    height: 600px;
+    background: transparent;
+}
